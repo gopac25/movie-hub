@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Explore from "./components/Explore";
+import Recommendations from "./components/Recommendations";
+import BucketList from "./components/BucketList";
+import Profile from "./components/Profile";
+import Watched from "./components/Watched";
+import Nav from "./components/Nav";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import "./App.css";
+
+class AppComponent extends React.Component {
+   state = {
+      title: "Movies Bucket"
+   };
+
+   componentDidMount() {}
+
+   render() {
+      return (
+         <Router>
+            <div className="App">
+               <Nav />
+               <Switch>
+                  <Route path="/" exact component={Recommendations}></Route>
+                  <Route path="/explore" component={Explore}></Route>
+                  <Route path="/bucketlist" component={BucketList}></Route>
+                  <Route path="/watched-movies" component={Watched}></Route>
+                  <Route path="/profile" component={Profile}></Route>
+               </Switch>
+            </div>
+         </Router>
+      );
+   }
 }
 
-export default App;
+export default AppComponent;
